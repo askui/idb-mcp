@@ -14,7 +14,7 @@ def main() -> None:
     start_parser = subparsers.add_parser("start", help="Start MCP server")
     start_parser.add_argument(
         "mode",
-        choices=["http", "sse"],
+        choices=["stdio", "http", "sse"],
         help="Transport to serve: http or sse",
     )
     start_parser.add_argument(

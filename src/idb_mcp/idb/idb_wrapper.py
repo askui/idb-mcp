@@ -12,7 +12,6 @@ class IDBWrapper:
         try:
             result = subprocess.run(
                 [self.idb_path] + args,
-                stdout=subprocess.PIPE,
                 capture_output=True,
                 text=True,
                 check=True,

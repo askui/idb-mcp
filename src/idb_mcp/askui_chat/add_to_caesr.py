@@ -149,7 +149,7 @@ class AddMcpServerToAskUIChat:
                 "args": [
                     "idb-mcp",
                     "start",
-                    "sse",
+                    "stdio",
                     "--target-screen-size",
                     "1280",
                     "800",

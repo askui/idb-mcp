@@ -1,10 +1,10 @@
 import asyncio
 import io
 import platform
-from typing import Literal
 
 import mcp
 from fastmcp import FastMCP
+from fastmcp.server.server import Transport
 from fastmcp.utilities.types import Image as FastMcpImage
 from PIL import Image
 
@@ -310,7 +310,7 @@ def ios_get_host_machine_platform() -> str:
 
 
 def start_server(
-    mode: Literal["http", "sse"], target_screen_size: tuple[int, int] | None = None
+    mode: Transport, target_screen_size: tuple[int, int] | None = None
 ) -> None:
     """
     Start the MCP server In either http or sse mode.
@@ -318,13 +318,10 @@ def start_server(
     If not provided, the images and coordinates will not be scaled.
 
     Args:
-        mode (Literal["http", "sse"]): The mode to serve the MCP server in.
+        mode (Transport): The mode to serve the MCP server in.
         target_screen_size (Optional[Tuple[int, int]]): The target screen size to scale the images and coordinates to.
     """
     mcp_server_handler.target_screen_size = target_screen_size
-    if mode == "http":
-        asyncio.run(app.run_http_async())
-    elif mode == "sse":
-        asyncio.run(app.run_sse_async())
-    else:
+    if mode not in ["stdio", "http", "sse"]:
         raise ValueError(f"Invalid mode: {mode}")
+    asyncio.run(app.run_async(mode))

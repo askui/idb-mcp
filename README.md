@@ -154,7 +154,7 @@ Example configuration:
   "mcpServers": {
     "askui-idb-mcp": {
       "command": "uvx",
-      "args": ["idb-mcp", "start", "sse", "--target-screen-size", "1280", "800"]
+      "args": ["idb-mcp", "start", "stdio", "--target-screen-size", "1280", "800"]
     }
   }
 }
@@ -167,7 +167,7 @@ Alternative (if `idb-mcp` is directly on your PATH without `uv`):
   "mcpServers": {
     "askui-idb-mcp": {
       "command": "idb-mcp",
-      "args": ["start", "sse", "--target-screen-size", "1280", "800"]
+      "args": ["start", "stdio", "--target-screen-size", "1280", "800"]
     }
   }
 }
