@@ -107,6 +107,8 @@ idb-mcp start --help
 
 ### Add MCP server to AskUI `Caesr` Chat
 
+⚠️ **Experimental Phase**: This feature is currently in an experimental phase and might not work straight out of the box.
+
 To make it easier to use the MCP server in AskUI `Caesr` Chat, you can add the MCP server and custom assistant to the Chat.
 
 ```bash
@@ -181,6 +183,8 @@ Notes:
 ## Configuration
 
 - **Target screen size** 📐: You can scale screenshots and coordinate inputs to a target viewport when starting the MCP server via CLI (`--target-screen-size W H`) or programmatically (`target_screen_size=(W, H)`).
+- **Mode** 📐: You can start the MCP server in `stdio`, `http`, or `sse` mode.
+- **Port** 📐: You can start the MCP server on a specific port via CLI (`--port PORT`) or programmatically (`port=PORT`).
 
 ## Troubleshooting
 
