@@ -12,7 +12,7 @@ from idb_mcp.mcp.server import app
 
 
 class AddMcpServerToAskUIChat:
-    """Class handles"""
+    """Class handles adding the MCP server and assistant config to the AskUI chat directory."""
 
     def __init__(self, chat_directory_path: str | None = None) -> None:
         self.chat_directory_path = (
