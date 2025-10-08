@@ -324,5 +324,8 @@ def start_server(
     mcp_server_handler.target_screen_size = target_screen_size
     if mode not in ["stdio", "http", "sse"]:
         raise ValueError(f"Invalid mode: {mode}")
-    print(f"Starting MCP server in {mode} mode on port {port}")
-    asyncio.run(app.run_async(mode, port=port))
+    if mode == "stdio":
+        asyncio.run(app.run_async(mode, show_banner=False))
+    else:
+        print(f"Starting MCP server in {mode} mode on port {port}")
+        asyncio.run(app.run_async(mode, port=port))
