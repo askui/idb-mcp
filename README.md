@@ -154,7 +154,7 @@ Example configuration:
   "mcpServers": {
     "askui-idb-mcp": {
       "command": "uvx",
-      "args": ["idb-mcp", "start", "stdio", "--target-screen-size", "1280", "800"]
+      "args": ["idb-mcp@latest", "start", "stdio", "--target-screen-size", "1280", "800"]
     }
   }
 }

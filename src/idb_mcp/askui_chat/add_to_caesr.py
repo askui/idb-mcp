@@ -147,7 +147,7 @@ class AddMcpServerToAskUIChat:
             "mcp_server": {
                 "command": "uvx",
                 "args": [
-                    "idb-mcp",
+                    "idb-mcp@latest",
                     "start",
                     "stdio",
                     "--target-screen-size",
