@@ -23,8 +23,8 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "pdm>=2.25.9",
-    "ruff>=0.9.5",
+    "ruff>=0.14.0",
+    "mypy>=1.18.2",
 ]
 
 [project.urls]
