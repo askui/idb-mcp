@@ -310,7 +310,7 @@ def ios_get_host_machine_platform() -> str:
 
 
 def start_server(
-    mode: Transport, target_screen_size: tuple[int, int] | None = None
+    mode: Transport, port: int, target_screen_size: tuple[int, int] | None = None
 ) -> None:
     """
     Start the MCP server In either http or sse mode.
@@ -324,4 +324,5 @@ def start_server(
     mcp_server_handler.target_screen_size = target_screen_size
     if mode not in ["stdio", "http", "sse"]:
         raise ValueError(f"Invalid mode: {mode}")
-    asyncio.run(app.run_async(mode))
+    print(f"Starting MCP server in {mode} mode on port {port}")
+    asyncio.run(app.run_async(mode, port=port))

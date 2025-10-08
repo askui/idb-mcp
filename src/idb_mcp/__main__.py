@@ -18,6 +18,13 @@ def main() -> None:
         help="Transport to serve: http or sse",
     )
     start_parser.add_argument(
+        "--port",
+        dest="port",
+        type=int,
+        help="Port to serve the MCP server on",
+        default=8000,
+    )
+    start_parser.add_argument(
         "--target-screen-size",
         type=int,
         nargs=2,
@@ -39,7 +46,7 @@ def main() -> None:
 
     args = parser.parse_args()
     if args.command == "start":
-        start_server(args.mode, args.target_screen_size)
+        start_server(args.mode, args.port, args.target_screen_size)
     elif args.command == "add-to-caesr":
         AddMcpServerToAskUIChat.add_mcp_server_to_askui_chat(args.chat_directory_path)
     else:
