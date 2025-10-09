@@ -1,4 +1,3 @@
-import asyncio
 import io
 import platform
 
@@ -325,7 +324,7 @@ def start_server(
     if mode not in ["stdio", "http", "sse"]:
         raise ValueError(f"Invalid mode: {mode}")
     if mode == "stdio":
-        asyncio.run(app.run_async(mode, show_banner=False))
+        app.run(mode, show_banner=False)
     else:
         print(f"Starting MCP server in {mode} mode on port {port}")
-        asyncio.run(app.run_async(mode, port=port))
+        app.run(mode, port=port)
