@@ -6,11 +6,9 @@ An open-source MCP server and Python library that wraps Facebook IDB to control 
 
 This project is based on the Facebook IDB CLI (`fb-idb`). See the GitHub repository ([`facebook/idb`](https://github.com/facebook/idb)) and the Python package ([`fb-idb` on PyPI](https://pypi.org/project/fb-idb/)).
 
-Welcome! 🚀 This repo helps you automate iOS simulators quickly and reliably, via MCP or directly in Python.
-
 ## What it is
 
-- **MCP server**: Exposes a set of iOS automation tools (list/select device, screenshot, tap, swipe, type, etc.) over MCP transports (HTTP or SSE) using `fastmcp`.
+- **MCP server**: Exposes a set of iOS automation tools (list/select device, screenshot, tap, swipe, type, etc.) over MCP transports (HTTP, SSE or stdio) using `fastmcp`.
 - **Python module**: Import to manage and control iOS simulators programmatically.
 
 ## Table of contents
@@ -84,19 +82,20 @@ The package installs an `idb-mcp` command.
 ```bash
 # Start MCP server over HTTP (default host/port managed by fastmcp)
 idb-mcp start http
-
 ```
 
 ```bash
 # Or start over SSE
 idb-mcp start sse
-
 ```
 
 ```bash
+# Or start over stdio
+idb-mcp start stdio
+```
+```bash
 # Optionally scale images/coordinates to a given target viewport (width height)
 idb-mcp start http --target-screen-size 1280 800
-
 ```
 
 ```bash
@@ -151,12 +150,21 @@ Steps:
 
 Example configuration:
 
+using [uv](https://github.com/astral-sh/uv) (Make sure you have `uv` installed):
+
 ```json
 {
   "mcpServers": {
     "askui-idb-mcp": {
       "command": "uvx",
-      "args": ["idb-mcp@latest", "start", "stdio", "--target-screen-size", "1280", "800"]
+      "args": [
+        "idb-mcp@latest",
+        "start",
+        "stdio",
+        "--target-screen-size",
+        "1280",
+        "800"
+      ]
     }
   }
 }
@@ -169,7 +177,13 @@ Alternative (if `idb-mcp` is directly on your PATH without `uv`):
   "mcpServers": {
     "askui-idb-mcp": {
       "command": "idb-mcp",
-      "args": ["start", "stdio", "--target-screen-size", "1280", "800"]
+      "args": [
+        "start",
+        "stdio",
+        "--target-screen-size",
+        "1280",
+        "800"
+      ]
     }
   }
 }
@@ -230,5 +244,5 @@ MIT License
 
 ## Links
 
-- Homepage: `https://github.com/askui/idb-mcp`
-- AskUI: `https://www.askui.com`
+- **Homepage**: [https://github.com/askui/idb-mcp](https://github.com/askui/idb-mcp)
+- **AskUI**: [https://www.askui.com](https://www.askui.com)
