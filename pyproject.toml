@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "idb-mcp"
-version = "0.0.6"
+version = "0.0.7"
 description = "An MCP server and importable Python module that wraps Facebook IDB to control iOS simulators for automation. Implemented by AskUI."
 readme = "README.md"
 requires-python = ">=3.10"
