@@ -93,6 +93,7 @@ idb-mcp start sse
 # Or start over stdio
 idb-mcp start stdio
 ```
+
 ```bash
 # Optionally scale images/coordinates to a given target viewport (width height)
 idb-mcp start http --target-screen-size 1280 800
@@ -146,7 +147,7 @@ You can use `idb-mcp` in any MCP-compatible client (e.g., Cursor, Claude Desktop
 Steps:
 
 - Open your client's MCP configuration file (location varies by client).
-- Add an entry named `askui-idb-mcp` that starts the server over SSE and sets a recommended target screen size.
+- Add an entry named `askui-idb-mcp` that starts the server over STDIO and sets a recommended target screen size.
 
 Example configuration:
 
@@ -191,7 +192,6 @@ Alternative (if `idb-mcp` is directly on your PATH without `uv`):
 
 Notes:
 
-- SSE works well for interactive automation. You can also use `http` if your client prefers it.
 - The `--target-screen-size 1280 800` setting improves coordinate reliability, especially for models like Claude.
 
 ## Configuration
