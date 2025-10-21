@@ -60,7 +60,7 @@ This project is based on the Facebook IDB CLI (`fb-idb`). See the GitHub reposit
 
   ```bash
   brew tap facebook/fb
-  brew install idb idb-companion
+  brew install idb-companion
   ```
 
 ## Install
