@@ -19,7 +19,6 @@ dependencies = [
     "fb-idb==1.1.7",
     "pillow==11.3.0",
     "fastmcp==2.12.3",
-    "bson==0.5.10",
 ]
 
 [dependency-groups]

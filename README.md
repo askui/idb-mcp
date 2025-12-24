@@ -23,7 +23,6 @@ This project is based on the Facebook IDB CLI (`fb-idb`). See the GitHub reposit
   - [Quick start (CLI)](#quick-start-cli)
     - [Why MCP?](#why-mcp)
     - [Start MCP server](#start-mcp-server)
-    - [Add MCP server to AskUI `Caesr` Chat](#add-mcp-server-to-askui-caesr-chat)
   - [Programmatic usage (Python)](#programmatic-usage-python)
   - [Add to your favorite tools](#add-to-your-favorite-tools)
   - [Configuration](#configuration)
@@ -39,7 +38,6 @@ This project is based on the Facebook IDB CLI (`fb-idb`). See the GitHub reposit
 - **Input control** 👆: tap, swipe, type text, tap keys, tap buttons.
 - **Screen utilities** 🖼️: capture screenshots, query screen size, get view description.
 - **Image/coord scaling** 📐: optional scaling to a target viewport for consistent coordinates.
-- **AskUI integration** 🤝: helper to add this server to AskUI `Caesr` Chat.
 
 ## Limitations
 
@@ -103,23 +101,6 @@ idb-mcp start http --target-screen-size 1280 800
 # Discover available options
 idb-mcp --help
 idb-mcp start --help
-```
-
-### Add MCP server to AskUI `Caesr` Chat
-
-⚠️ **Experimental Phase**: This feature is currently in an experimental phase and might not work straight out of the box.
-
-To make it easier to use the MCP server in AskUI `Caesr` Chat, you can add the MCP server and custom assistant to the Chat.
-
-```bash
-# Adds the MCP server and custom assistant to AskUI `Caesr` Chat.
-idb-mcp add-to-caesr
-```
-
-Or to a specific Chat directory:
-
-```bash
-idb-mcp add-to-caesr --chat-dir /path/to/askui/caesr/chat
 ```
 
 ## Programmatic usage (Python)
