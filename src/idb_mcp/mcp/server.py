@@ -320,6 +320,7 @@ def ios_save_screenshot_to_disk(absolute_image_path: str) -> str:
     )
     return f"Saved screenshot to {absolute_image_path}"
 
+
 def start_server(
     mode: Transport, port: int, target_screen_size: tuple[int, int] | None = None
 ) -> None:
