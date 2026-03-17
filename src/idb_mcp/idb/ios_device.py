@@ -2,6 +2,7 @@ import json
 import string
 import tempfile
 from enum import Enum
+from pathlib import Path
 
 from PIL import Image
 
@@ -219,6 +220,25 @@ class IOSDevice:
         ) as temp_file:
             self.run_command_on_device(["screenshot", temp_file.name])
             return Image.open(temp_file.name)
+
+    def save_screenshot_to_disk(self, absolute_image_path: str | Path) -> None:
+        """Save a screenshot of the device to a file.
+
+        Creates the parent directory if it does not exist.
+
+        Raises:
+            IDBError: If the path does not end with .png, the file already exists,
+                or the device is not booted.
+        """
+        self._assert_is_booted()
+        image_path = Path(absolute_image_path).resolve()
+        if image_path.suffix.lower() != ".png":
+            raise IDBError("Path must end with .png")
+        if image_path.exists():
+            raise IDBError(f"File {image_path} already exists")
+        image_path.parent.mkdir(parents=True, exist_ok=True)
+        image = self.screenshot()
+        image.save(image_path)
 
     def connect_to_idb_companion(self) -> None:
         """Connect to the device to IDB Companion."""
