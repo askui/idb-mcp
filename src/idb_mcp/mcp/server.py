@@ -308,6 +308,18 @@ def ios_get_host_machine_platform() -> str:
     return f"Host machine platform: {platform.platform()}"
 
 
+@app.tool()
+def ios_save_screenshot_to_disk(absolute_image_path: str) -> str:
+    """Save a screenshot of the selected device to a file at the given path.
+
+    The path must end with .png. Parent directories are created if needed.
+    Fails if the file already exists.
+    """
+    mcp_server_handler.controller.get_selected_device().save_screenshot_to_disk(
+        absolute_image_path
+    )
+    return f"Saved screenshot to {absolute_image_path}"
+
 def start_server(
     mode: Transport, port: int, target_screen_size: tuple[int, int] | None = None
 ) -> None:
