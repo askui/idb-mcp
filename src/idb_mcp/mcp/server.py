@@ -1,4 +1,5 @@
 import io
+import json
 import platform
 
 import mcp
@@ -319,6 +320,107 @@ def ios_save_screenshot_to_disk(absolute_image_path: str) -> str:
         absolute_image_path
     )
     return f"Saved screenshot to {absolute_image_path}"
+
+
+@app.tool()
+def ios_open_url(url: str) -> str:
+    """
+    Open a URL on the selected device (e.g. https://example.com).
+
+    Args:
+        url (str): The URL to open.
+    """
+    mcp_server_handler.controller.get_selected_device().open_url(url)
+    return f"Opened URL: {url}"
+
+
+@app.tool()
+def ios_set_location(latitude: float, longitude: float) -> str:
+    """
+    Set the simulator's GPS location. Only supported on simulators.
+
+    Args:
+        latitude (float): The latitude.
+        longitude (float): The longitude.
+    """
+    mcp_server_handler.controller.get_selected_device().set_location(
+        latitude, longitude
+    )
+    return f"Set location to ({latitude}, {longitude})"
+
+
+@app.tool()
+def ios_install_app(app_path: str) -> str:
+    """
+    Install an app on the selected device from a .app, .ipa, or .xcarchive path.
+
+    Args:
+        app_path (str): Absolute path to the app bundle (.app), .ipa, or .xcarchive.
+    """
+    mcp_server_handler.controller.get_selected_device().install_app(app_path)
+    return f"Installed app from {app_path}"
+
+
+@app.tool()
+def ios_uninstall_app(bundle_id: str) -> str:
+    """
+    Uninstall an app from the selected device by bundle id.
+
+    Args:
+        bundle_id (str): The bundle identifier of the app to uninstall.
+    """
+    mcp_server_handler.controller.get_selected_device().uninstall_app(bundle_id)
+    return f"Uninstalled app with bundle id: {bundle_id}"
+
+
+@app.tool()
+def ios_launch_app(bundle_id: str, args: list[str] | None = None) -> str:
+    """
+    Launch an app on the selected device by bundle id with optional arguments.
+
+    Args:
+        bundle_id (str): The bundle identifier of the app to launch.
+        args (list[str] | None): Optional list of arguments to pass to the app.
+    """
+    output = mcp_server_handler.controller.get_selected_device().launch_app(
+        bundle_id, args
+    )
+    return f"Launched app {bundle_id}. Output: {output}"
+
+
+@app.tool()
+def ios_terminate_app(bundle_id: str) -> str:
+    """
+    Terminate a running app on the selected device by bundle id.
+
+    Args:
+        bundle_id (str): The bundle identifier of the app to terminate.
+    """
+    mcp_server_handler.controller.get_selected_device().terminate_app(bundle_id)
+    return f"Terminated app with bundle id: {bundle_id}"
+
+
+@app.tool()
+def ios_list_installed_apps() -> str:
+    """List installed apps on the selected device. Returns JSON lines (one app per line)."""
+    apps = mcp_server_handler.controller.get_selected_device().list_installed_apps()
+    lines = [json.dumps(app) for app in apps]
+    return "\n".join(lines) if lines else "No installed apps"
+
+
+@app.tool()
+def ios_approve_permissions(bundle_id: str, services: list[str]) -> str:
+    """
+    Approve permissions for an app. Only 'photos', 'location', 'camera', 'microphone' are supported.
+
+    Args:
+        bundle_id (str): The bundle identifier of the app.
+        services (list[str]): List of services to approve, e.g. ['photos', 'location', 'camera', 'microphone'].
+    """
+    mcp_server_handler.controller.get_selected_device().approve_permissions(
+        bundle_id, services
+    )
+    return f"Approved permissions {services} for app {bundle_id}"
 
 
 def start_server(
